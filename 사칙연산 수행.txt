@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main()
+{
+    int result = 0;
+    int a = 0;
+    int b = 0;
+    int c = 0;
+    
+    scanf("%d", &a);
+    scanf("%d", &b);
+    scanf("%d", &c);
+    
+    if (c == 0) {
+        printf("숫자를 입력하세요"); // (1이상의 숫자를 입력하시오) 입력 시 한글 깨짐
+        return 0;
+    }
+    result = (a + b) * c - (a - b) / c;
+    printf("%d", result);
+    return 0;
+}
