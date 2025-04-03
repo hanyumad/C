@@ -11,8 +11,8 @@ int main()
     scanf("%d", &b);
     scanf("%d", &c);
     
-    if (c == 0) {
-        printf("숫자를 입력하세요"); // (1이상의 숫자를 입력하시오) 입력 시 한글 깨짐
+    if (c == 0 || c <= -1) {    // c가 0이거나  -1보다 작다면
+        printf("1 이상의 숫자를 입력하세요");
         return 0;
     }
     result = (a + b) * c - (a - b) / c;
