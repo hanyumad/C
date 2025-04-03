@@ -6,12 +6,12 @@ int main()
     printf("세자리 수를 입력하세요\n");
     scanf("%d", &n);
     
-    for (i = n; i > 0; i = i / 10) {
-        sum = sum + i % 10;
-        if (n >= 1000) {
+        if (n >= 1000 || n <= 99) { // n이 99보다 크거나 1000보다 작아야한다
             printf("세자리 수를 입력하세요");
             return 0;
-        }
+        }  
+    for (i = n; i > 0; i = i / 10) {    // i가 0보다 클 경우 i를 10으로 나누어 자리 수 줄임
+        sum = sum + i % 10; //  i를 10으로 나눈 마지막 자리 수를 sum에 더함
     }
     printf("자리 수의 합 : %d", sum);
     return 0;
