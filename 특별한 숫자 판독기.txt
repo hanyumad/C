@@ -2,7 +2,7 @@
 
 int main()
 {
-    int a, x, y, z;
+    int a, x, y, z, first, last;
     
     x = (a / 100) % 10;
     y = (a / 10) % 10;
@@ -14,7 +14,6 @@ int main()
             printf("input 3-digit number");
             return 0;
     }
-
     if (a % 3 == 0 && a % 2 == 1) {
         printf("Special number!");
         return 0;
@@ -23,7 +22,16 @@ int main()
         printf("Special number!");
         return 0;
     }
-    if (x > y && y > z) {
+    if (a >= 100) {
+        first = x;
+    } else if (a >= 10) {
+        first = y;
+    } else {
+        first = z;
+    }
+    last = z;
+    
+    if (first > last) {
         printf("Special number!");
         return 0;
     } else {
