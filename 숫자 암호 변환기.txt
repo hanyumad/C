@@ -1,0 +1,49 @@
+
+#include <stdio.h>
+
+void main()
+{
+  
+  int a;
+  
+  printf("input number 0 to 9\n");
+  scanf("%d", &a);
+  
+    switch(a) 
+    {
+        case 0:
+            printf("A");
+            break;
+        case 1:
+            printf("B");
+            break;
+        case 2:
+            printf("C");
+            break;
+        case 3:
+            printf("D");
+            break;
+        case 4:
+            printf("E");
+            break;
+        case 5:
+            printf("F");
+            break;
+        case 6:
+            printf("G");
+            break;
+        case 7:
+            printf("H");
+            break;
+        case 8:
+            printf("I");
+            break;
+        case 9:
+            printf("J");
+            break;
+        default:
+            printf("imput number 0 to 9");
+  }
+
+  
+}
