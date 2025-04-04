@@ -3,7 +3,6 @@
 
 void main()
 {
-  
   int a;
   
   printf("input number 0 to 9\n");
@@ -43,7 +42,5 @@ void main()
             break;
         default:
             printf("imput number 0 to 9");
-  }
-
-  
+  }  
 }
