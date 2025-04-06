@@ -8,10 +8,11 @@ int main() {
     int num[SIZE];
     int i, j;
 
-    srand(time(NULL));
+    srand(time(NULL));  // rand 함수의 시드 설정
+                        // time(NULL)은 현재 시간을 가져옴. 이 값으로 난수 생성
 
     // 중복 없는 난수 생성
-    for (i = 0; i < SIZE; i++) {
+    for (i = 0; i < SIZE; i++) {    // 0부터 5까지 총 6번 반복
         num[i] = (rand() % 45) + 1;
         for (j = 0; j < i; j++) {
             if (num[i] == num[j]) {
@@ -23,13 +24,13 @@ int main() {
 
     // 선택 정렬
     for (i = 0; i < SIZE - 1; i++) {
-        int min = i;
-        for (j = i + 1; j < SIZE; j++) {
+        int min = i;    // 가장 작은 값을 i로 설정
+        for (j = i + 1; j < SIZE; j++) {    // i 다음 숫자부터 반복하며 비교
             if (num[j] < num[min]) {
-                min = j;
+                min = j;    // 가장 작은 값으로 min 변경
             }
         }
-        // 교환
+        // 가장 작은 값을 현재 위치와 교환
         int temp = num[i];
         num[i] = num[min];
         num[min] = temp;
