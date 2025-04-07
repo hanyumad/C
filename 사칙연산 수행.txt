@@ -15,5 +15,6 @@ int main()
 
     result = (a + b) * c - (a - b) / c;
     printf("%d", result);
+
     return 0;
 }
