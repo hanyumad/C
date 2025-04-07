@@ -8,34 +8,27 @@ int main()
     printf("input temperature\n");
     scanf("%f", &temp);
     
-    if (temp > 40)  // 40도 초과
-    {
+    if (temp > 40) { // 40도 초과
         printf("input value temperature.\n");
         return -1;
     }
-    
-    if (temp >= 30) // 30도 이상
-    {
+
+    if (temp >= 30) { // 30도 이상
         a = 1;
     }
-    else if (temp >= 25)    // 25도 이상 30도 미만
-    {
+    else if (temp >= 25) {   // 25도 이상 30도 미만
         a = 2;
     }
-    else if (temp >= 15)    // 15도 이상 25도 미만
-    {
+    else if (temp >= 15) {   // 15도 이상 25도 미만
         a = 3;
     }
-    else if (temp >= 5)     // 5도 이상 15도 미만
-    {
+    else if (temp >= 5) {    // 5도 이상 15도 미만
         a = 4;
     }
-    else if (temp >= 0)     // 0도 이상 5도 미만
-    {
+    else if (temp >= 0) {    // 0도 이상 5도 미만
         a = 5;
     }
-    else if (temp >= -30)   // -30도 이상 0도 미만
-    {
+    else if (temp >= -30) {  // -30도 이상 0도 미만
         a = 6;
     }
     
