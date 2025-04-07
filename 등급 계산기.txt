@@ -11,8 +11,7 @@ int main()
         printf("input value score");
         return -1;
     }
-        switch((int)a / 10)
-        {
+        switch((int)a / 10) {
             case 10:// 100
             case 9: //  90~99
                 printf("grade A\n");
