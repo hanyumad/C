@@ -2,7 +2,6 @@
 
 int main()
 {
-    
     int n; // 피라미드의 줄 수
     
     printf("input number\n");
