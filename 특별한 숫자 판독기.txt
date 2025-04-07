@@ -17,9 +17,15 @@ int main()
     if (a % 3 == 0 && a % 2 == 1) {
         printf("Special number!");
         return 0;
+    } else {
+        printf("Normal number...");
+        return 0;
     }
     if ((x + y + z) % 7 == 0) {
         printf("Special number!");
+        return 0;
+    } else {
+        printf("Normal number...");
         return 0;
     }
     if (a >= 100) {
