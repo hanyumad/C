@@ -41,7 +41,7 @@ int main()
             continue;
         } else if (i % 5 == 0) { // 5의 배수면 출력 후 반복문 빠져나감
             printf("%d\n", i);
-            //break;
+            break;
         } else { // 조건에 해당하지 않으면 그대로 출력
             printf("%d\n", i);
         }
