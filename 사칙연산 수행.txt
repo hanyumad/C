@@ -10,7 +10,7 @@ int main()
     
     if (c <= 0) {
         printf("1 이상의 숫자를 입력하세요.");
-        return 0;
+        return -1;
     }
 
     result = (a + b) * c - (a - b) / c;
