@@ -43,6 +43,5 @@ int main()
     } else {
         printf("Normal number...");
     }
-
     return 0;
 }
