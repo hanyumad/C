@@ -11,7 +11,7 @@ int main()
     if (temp > 40)  // 40도 초과
     {
         printf("input value temperature.\n");
-        return 0;
+        return -1;
     }
     
     if (temp >= 30) // 30도 이상
