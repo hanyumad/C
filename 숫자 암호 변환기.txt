@@ -8,8 +8,7 @@ void main()
   printf("input number 0 to 9\n");
   scanf("%d", &a);
   
-    switch(a) 
-    {
+    switch(a) {
         case 0:
             printf("A");
             break;
@@ -42,5 +41,5 @@ void main()
             break;
         default:
             printf("input number value number");
-  }  
+    }  
 }
