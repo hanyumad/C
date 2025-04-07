@@ -49,5 +49,6 @@ int main()
         default:
             printf("input value temperature.\n");
     }
+
     return 0;
 }
