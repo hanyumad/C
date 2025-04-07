@@ -2,11 +2,7 @@
 
 int main()
 {
-    int a, x, y, z, first, last;
-    
-    x = (a / 100) % 10;
-    y = (a / 10) % 10;
-    z = a % 10;
+    int a, x, y, z, first, last, special;
 
     printf("input number 0 to 999\n");
     scanf("%d", &a);
@@ -15,19 +11,17 @@ int main()
             return 0;
     }
     if (a % 3 == 0 && a % 2 == 1) {
-        printf("Special number!");
-        return 0;
-    } else {
-        printf("Normal number...");
-        return 0;
-    }
+        special = 1;
+    } 
+    
+    x = (a / 100) % 10;
+    y = (a / 10) % 10;
+    z = a % 10;
+    
     if ((x + y + z) % 7 == 0) {
-        printf("Special number!");
-        return 0;
-    } else {
-        printf("Normal number...");
-        return 0;
+        special = 1;
     }
+
     if (a >= 100) {
         first = x;
     } else if (a >= 10) {
@@ -38,10 +32,14 @@ int main()
     last = z;
     
     if (first > last) {
-        printf("Special number!");
-        return 0;
+        special = 1;
+    }
+    
+    if (special) {
+        printf ("Special number!");
     } else {
         printf("Normal number...");
     }
+
     return 0;
 }
