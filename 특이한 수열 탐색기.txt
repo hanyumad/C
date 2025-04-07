@@ -6,25 +6,46 @@ int main()
     
     printf("input M to N number\n");
     scanf("%d", &M);
-    printf("M은 %d\n", M);
-    scanf("%d", &N);
-    printf("N은 %d\n", N);
-    
-    if (M <= 0 || N <= 0) {
+    if (M <= 0) {
         printf("input higher than 0");
-    } else if (M > N) {
-        printf("M은 N보다 클 수 없습니다");
         return -1;
     }
+    printf("M은 : %d\n", M);
+
+    scanf("%d", &N);
+    if (N <= 0) {
+        printf("input higher than 0");
+        return -1;
+    }
+    printf("N은 : %d\n", N);
     
-    for (i = M; i < N + 1; i++) {
-        if (i % 7 == 0 || i % 10 == 7 || ((i / 10) % 10 == 7) || ((i / 100) % 10 == 7)) {
-        } else if (i % 5 == 0) {
+    if (M > N) {
+        printf("N is higher than M");
+        return -1;
+    }
+
+    for (i = M; i <= N; i++) {
+        int temp = i;
+        int include = 0;
+
+        // 숫자에 7이 포함되어 있는지 확인
+        while (temp > 0) { // temp가 0일 동안 반복 
+            if (temp % 10 == 7) { // 마지막 자리수 확인
+                include = 1; // 7이 포함되어 있다면 1 반환
+                break;
+            }
+            temp /= 10; // 숫자를 10으로 나눠 점점 작게 만들어 반복이 끝나게 함
+        }
+
+        if (i % 7 == 0 || include) { // 7의 배수이거나 숫자에 7이 포함된 경우
+            continue;
+        } else if (i % 5 == 0) { // 5의 배수면 출력 후 반복문 빠져나감
             printf("%d\n", i);
             //break;
-        } else {
+        } else { // 조건에 해당하지 않으면 그대로 출력
             printf("%d\n", i);
         }
     }
+
     return 0;
 }
