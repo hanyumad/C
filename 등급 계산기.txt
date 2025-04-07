@@ -9,7 +9,7 @@ int main()
     
     if (a < 0 || a > 100) {
         printf("input value score");
-        return 0;
+        return -1;
     }
         switch((int)a / 10)
         {
