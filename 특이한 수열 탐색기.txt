@@ -1,0 +1,32 @@
+
+#include <stdio.h>
+
+int main()
+{
+    int i, M, N;
+    
+    printf("input M to N number\n");
+    scanf("%d", &M);
+    printf("M은 %d\n", M);
+    scanf("%d", &N);
+    printf("N은 %d\n", N);
+    
+    if (M >= 1000 || N >= 1000) {
+        printf("input 3-Digit number");
+        return 0;
+    } else if (M > N) {
+        printf("M은 N보다 클 수 없습니다");
+        return 0;
+    }
+    
+    for (i = M; i < N; i++) {
+        if (i % 7 == 0 ||  i % 10 == 7 || i % 100 == 7) {
+        } else if (i % 5 == 0) {
+            printf("%d\n", i);
+            continue;
+        } else {
+            printf("%d\n", i);
+        }
+    }
+    return 0;
+}
