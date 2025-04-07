@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+int main() {
+    int n; // 피라미드의 줄 수
+    scanf("%d", &n);
+
+    for (int i = 1; i <= n; i++) { // i는 현재 줄 번호
+        for (int j = 1; j <= n - i; j++) { // n - i개 공백 출력
+            printf(" ");
+        }
+
+        for (int k = 1; k <= i; k++) {
+            printf("%d ", k);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
