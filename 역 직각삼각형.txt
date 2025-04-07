@@ -8,7 +8,7 @@ int main() {
     scanf("%d", &n);
     
     if (n <= 0) {
-        printf("input over 0");
+        printf("input value number");
     }
 
     for (int i = n; i >= 1; i--) {         // i: 줄 수 (n부터 1까지 감소)
