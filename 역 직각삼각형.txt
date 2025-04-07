@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+int main() {
+    int n;
+    scanf("%d", &n);
+
+    for (int i = n; i >= 1; i--) {         // i: 줄 수 (n부터 1까지 감소)
+        for (int j = 1; j <= i; j++) {     // j: 별을 i개 출력
+            printf("*");
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
