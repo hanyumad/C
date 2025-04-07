@@ -1,8 +1,7 @@
 
 #include <stdio.h>
 
-void main()
-{
+void main() {
   int a;
   
   printf("input number 0 to 9\n");
