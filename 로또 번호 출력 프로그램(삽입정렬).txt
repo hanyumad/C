@@ -23,16 +23,17 @@ int main() {
     // 삽입정렬
     int temp;
     
-    for (int i = 0; i < SIZE; i++) {
-        int j = i - 1;
+    for (int i = 1; i < SIZE; i++) { 
+    // 자신보다 앞의 요소와 비교하기 때문에 1부터 시작
+        int j = i - 1; // 앞의 요소
         while((num[j] > num[j + 1]) && (j >= 0)) {
+        // 두번째 요소부터 시작해서 두번째 요소의 값이 첫번재 요소의 값보다 크다면
             temp = num[j];
             num[j] = num[j + 1];
             num[j + 1] = temp;
-            j--;
+            j--; // 값을 교환하며 정렬
         }
     }
-    
     // 출력
     for (i = 0; i < SIZE; i++) {
         printf("%d\n", num[i]);
