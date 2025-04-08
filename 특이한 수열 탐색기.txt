@@ -24,12 +24,13 @@ int main()
         return -1;
     }
 
+    
     for (i = M; i <= N; i++) {
         int temp = i;
         int include = 0;
 
         // 숫자에 7이 포함되어 있는지 확인
-        while (temp > 0) { // temp가 0일 동안 반복 
+        while (temp > 0) { // temp가 0이 될때까지 반복 
             if (temp % 10 == 7) { // 마지막 자리수 확인
                 include = 1; // 7이 포함되어 있다면 1 반환
                 break;
