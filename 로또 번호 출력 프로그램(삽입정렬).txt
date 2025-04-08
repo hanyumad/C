@@ -21,21 +21,20 @@ int main() {
         }
     }
     // 삽입정렬
-    int temp;
-    
-    for (int i = 1; i < SIZE; i++) { 
+    for (int i = 1; i < SIZE; i++) {
     // 자신보다 앞의 요소와 비교하기 때문에 1부터 시작
     // 첫번째 요소는 정렬 되어있다고 여김
-        int j = i - 1; // 앞의 요소
-        while((num[j] > num[j + 1]) && (j >= 0)) {
-        // 현재 값이 그 앞의 값보다 작고, 0 이상일 때 반복
-        // 정렬된 부분에서 현재 값보다 큰 값들을 오른쪽으로 이동
-            temp = num[j];
-            num[j] = num[j + 1];
-            num[j + 1] = temp; // 값을 교환하며 정렬
-            j--; // 비교 위치를 한칸 왼쪽으로 이동
+        int key = num[i]; // 현재 요소를 key에 저장
+        int j = i - 1; // key의 바로 앞 요소
+        
+        while(num[j] > key && j >= 0) {
+        // key보다 큰 값은 뒤로 보냄
+            num[j + 1] = num[j]; // key보다 큰 값을 오른쪽으로 한 칸 이동시킴
+            j--; // 비교 대상을 왼쪽으로 이동
         }
+        num[j + 1] = key; // key를 바로 뒤 자리에 삽입
     }
+    
     // 출력
     for (i = 0; i < SIZE; i++) {
         printf("%d\n", num[i]);
