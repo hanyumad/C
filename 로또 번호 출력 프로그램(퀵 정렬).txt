@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define SIZE 6
+
+// 퀵 정렬 함수
+void quickSort(int arr[], int left, int right) {
+    if (left >= right) return;
+
+    int pivot = arr[left]; // 가장 왼쪽 값을 피벗으로 사용
+    int i = left + 1; // 피벗 바로 오른쪽에서 시작
+    int j = right; // 가장 오른쪽 끝에서 시작
+    int temp;
+
+    while (i <= j) { // 왼쪽과 오른쪽이 만나기 전까지 반복
+        while (i <= right && arr[i] <= pivot) i++;
+        //  피벗보다 큰 값을 만날 때까지 오른쪽으로 이동
+        while (j > left && arr[j] >= pivot) j--;
+        //  피벗보다 작은 값을 만날 때까지 왼쪽으로 이동
+        if (i > j) { // i의 값이 j의 값보다 크다면 피벗과 j의 값을 교환
+            temp = arr[left];
+            arr[left] = arr[j];
+            arr[j] = temp;
+        } else { // 서로 만나지 않았다면 i와 j의 값을 교환
+            temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
+    // 재귀 호출
+    // 피벗 기준 왼쪽과 오른쪽을 정렬
+    quickSort(arr, left, j - 1);
+    quickSort(arr, j + 1, right);
+}
+
+int main() {
+    int num[SIZE];
+    int i, j;
+
+    srand(time(NULL));  // 난수 시드 설정
+
+    // 중복 없는 난수 생성
+    for (i = 0; i < SIZE; i++) {
+        num[i] = (rand() % 45) + 1;
+        for (j = 0; j < i; j++) {
+            if (num[i] == num[j]) {
+                i--;  // 중복이면 다시 뽑기
+                break;
+            }
+        }
+    }
+    // 퀵 정렬 수행
+    quickSort(num, 0, SIZE - 1);
+
+    //출력
+    for (i = 0; i < SIZE; i++) {
+        printf("%d ", num[i]);
+    }
+    return 0;
+}
