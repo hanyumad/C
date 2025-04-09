@@ -7,14 +7,13 @@ int main() {
             int date = i * 100 + j;
 
             if (date > 202504) 
-            break;
+                break;
 
             if (date >= 202302 && date <= 202305) // 202302부터 202305까지 생략하여 출력
-            continue;
+                continue;
 
             printf("%d\n", date);
         }
     }
-
     return 0;
 }
