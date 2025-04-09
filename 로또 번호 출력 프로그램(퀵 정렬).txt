@@ -22,7 +22,7 @@ void quickSort(int arr[], int left, int right) {
             temp = arr[left];
             arr[left] = arr[j];
             arr[j] = temp;
-        } else { // 서로 만나지 않았다면 i와 j의 값을 교환
+        } else { // i와 j가 서로 만나지 않았다면 i와 j의 값을 교환
             temp = arr[i];
             arr[i] = arr[j];
             arr[j] = temp;
