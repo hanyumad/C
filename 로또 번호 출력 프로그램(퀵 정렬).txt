@@ -14,9 +14,13 @@ void quickSort(int arr[], int left, int right) {
     int temp;
 
     while (i <= j) { // 왼쪽과 오른쪽이 만나기 전까지 반복
-        while (i <= right && arr[i] <= pivot) i++;
+        while (i <= right && arr[i] <= pivot) {
+            i++;
+        }
         //  피벗보다 큰 값을 만날 때까지 오른쪽으로 이동
-        while (j > left && arr[j] >= pivot) j--;
+        while (j > left && arr[j] >= pivot) {
+            j--;
+        }
         //  피벗보다 작은 값을 만날 때까지 왼쪽으로 이동
         if (i > j) { // i의 값이 j의 값보다 크다면 피벗과 j의 값을 교환
             temp = arr[left];
