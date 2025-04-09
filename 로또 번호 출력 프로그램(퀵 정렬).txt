@@ -38,7 +38,8 @@ int main() {
     int num[SIZE];
     int i, j;
 
-    srand(time(NULL));  // 난수 시드 설정
+    srand(time(NULL));  // rand 함수의 시드 설정
+                        // time(NULL)은 현재 시간을 가져옴. 이 값으로 난수 생성
 
     // 난수 생성
     for (i = 0; i < SIZE; i++) {
