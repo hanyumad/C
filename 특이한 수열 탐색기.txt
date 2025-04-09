@@ -24,7 +24,6 @@ int main()
         return -1;
     }
 
-    
     for (i = M; i <= N; i++) {
         int temp = i;
         int include = 0;
