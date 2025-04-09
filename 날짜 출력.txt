@@ -6,11 +6,13 @@ int main() {
         for (int j = 1; j <= 12; j++) {
             int date = i * 100 + j;
 
-            if (date > 202504) 
+            if (date > 202504) {
                 break;
+            }
 
-            if (date >= 202302 && date <= 202305) // 202302부터 202305까지 생략하여 출력
+            if (date >= 202302 && date <= 202305) { // 202302부터 202305까지 생략하여 출력
                 continue;
+            }
 
             printf("%d\n", date);
         }
