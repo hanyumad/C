@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define TRUE 1
+#define FALSE 0
+#define MAX 1000
+
+struct Student { // 구조체 정의
+    char name[20];
+    int age;
+    char gender[20];
+    char hobby[20];
+};
+
+void information(struct Student *p) {   //  미리 입력된 학생 정보
+    struct Student a = {"hong", 30, "M", "soccer"};
+    struct Student b = {"kim", 25, "M", "music"};
+    struct Student c = {"park", 20, "F", "movie"};
+    *(p+0) = a;
+    *(p+1) = b;
+    *(p+2) = c; //  p의 첫번째, 두번째, 세번째 위치에 a, b, c 저장
+}
+
+int inputStudent(struct Student *p, int *n) {   //  n은 현재 학생 수
+    char temp[20];
+    printf("\n이름 (end 입력 시 종료): ");
+    scanf("%s", temp);
+    
+    if (strcmp(temp, "end") == 0) return FALSE; //  strcmp 사용하여 end 입력하면 프로그램 종료
+    
+    strcpy((*(p+*n)).name, temp);   //  입력한 이름 strcpy 사용하여 복사
+    printf("나이: ");
+    scanf("%d", &((*(p+*n)).age));
+    printf("성별: ");
+    scanf("%s", (*(p+*n)).gender);
+    printf("취미: ");
+    scanf("%s", (*(p+*n)).hobby);
+    (*n)++;
+    
+    return TRUE;
+}
+
+void printStudent(struct Student *p, int n) {   //  현재 등록 된 모든 학생 정보 출력
+    printf("\n--- 학생 정보 ---\n");
+    for (int i = 0; i < n; i++) { //  학생 수 n만큼 반복
+        printf("%d. %s %d %s %s\n", i+1, (*(p+i)).name, (*(p+i)).age, (*(p+i)).gender, (*(p+i)).hobby);
+    }
+}
+
+int main() {
+    struct Student *p = (struct Student*)malloc(sizeof(struct Student) * MAX);  //  p에 학생 저장 공간 1000세트 동적 할당
+    int n = 3;  //  초기 학생 수 3명
+    information(p); //  미리 입력된 학생 정보
+    printStudent(p, n); //  미리 입력된 학생 3명 정보 출력
+
+    while (TRUE) {
+        if (inputStudent(p, &n) == FALSE) break;    //  end 입력 받으면 종료
+        printStudent(p, n); //  모든 학생 정보 출력
+    }
+
+    free(p);    //  동적 할당 해제
+    
+    return 0;
+}
