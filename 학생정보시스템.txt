@@ -18,7 +18,7 @@ void information(struct Student *p) {   //  미리 입력된 학생 정보
     struct Student c = {"park", 20, "F", "movie"};
     *(p+0) = a;
     *(p+1) = b;
-    *(p+2) = c; //  p의 첫번째, 두번째, 세번째 위치에 a, b, c 저장
+    *(p+2) = c; //  배열 p의 첫번째, 두번째, 세번째 위치에 a, b, c 저장
 }
 
 int inputStudent(struct Student *p, int *n) {   //  n은 현재 학생의 수
@@ -31,7 +31,8 @@ int inputStudent(struct Student *p, int *n) {   //  n은 현재 학생의 수
             return FALSE;
         }
         
-        if (strlen(temp) == 0) {    //  공백이면 재입력
+        if (strlen(temp) == 0) {
+        //  strlen으로 공백이면 재입력
             printf("input name.\n");
         } else 
             break;
