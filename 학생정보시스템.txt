@@ -5,7 +5,7 @@
 #define FALSE 0
 #define MAX 1000
 
-struct Student { // 구조체 정의
+struct Student {    //  구조체 정의
     char name[20];
     int age;
     char gender[20];
@@ -21,48 +21,81 @@ void information(struct Student *p) {   //  미리 입력된 학생 정보
     *(p+2) = c; //  p의 첫번째, 두번째, 세번째 위치에 a, b, c 저장
 }
 
-int inputStudent(struct Student *p, int *n) {   //  n은 현재 학생 수
-    char temp[20];
-    printf("\n이름 (end 입력 시 종료): ");
-    scanf("%s", temp);
-    
-    if (strcmp(temp, "end") == 0) { //  strcmp 사용하여 end 입력하면 프로그램 종료
-    return FALSE;
+int inputStudent(struct Student *p, int *n) {   //  n은 현재 학생의 수
+    char temp[20];  //  문자열 입력받을 임시 변수
+    while (1) {
+        printf("\n이름 (end 입력 시 종료): ");
+        scanf("%s", temp);
+        if (strcmp(temp, "end") == 0) {
+        return FALSE;
+        }
+        //strcmp 사용하여 end 입력하면 프로그램 종료
+        if (strlen(temp) == 0) {    //  공백이면 재입력
+        printf("문자를 입력하세요.\n");
+        } else 
+        break;
     }
+    strcpy((*(p+*n)).name, temp);
+    //  입력한 이름 strcpy 사용하여 복사
+    int age;
     
-    strcpy((*(p+*n)).name, temp);   //  입력한 이름 strcpy 사용하여 복사
-    printf("나이: ");
-    scanf("%d", &((*(p+*n)).age));
-    printf("성별: ");
-    scanf("%s", (*(p+*n)).gender);
-    printf("취미: ");
-    scanf("%s", (*(p+*n)).hobby);
-    (*n)++;
-    
+    while (1) { //  0 이상의 나이만 입력 가능
+        printf("나이: ");
+        if (scanf("%d", &age) != 1 || age <= 0) {
+            printf("0 이상의 나이를 입력하세요.\n");
+            while (getchar() != '\n');
+        } else 
+        break;
+    }
+    (*(p+*n)).age = age;
+
+    while (1) { //  M/F 만 입력 가능
+        printf("성별 (M/F): ");
+        scanf("%s", temp);
+        if (strcmp(temp, "M") != 0 && strcmp(temp, "F") != 0) {
+            printf("M 또는 F로 입력하세요.\n");
+        } else
+        break;
+    }
+    strcpy((*(p+*n)).gender, temp);
+    //  입력한 성별 strcpy 사용하여 복사
+
+    while (1) {
+        printf("취미: ");
+        scanf("%s", temp);
+        if (strlen(temp) == 0) {    //  공백이면 재입력
+        printf("취미를 입력하세요.\n");
+        } else
+        break;
+    }
+    strcpy((*(p+*n)).hobby, temp);
+    //  입력한 취미 strcpy 사용하여 복사
+    (*n)++; //  학생 수 1 증가
     return TRUE;
 }
 
-void printStudent(struct Student *p, int n) {   //  현재 등록 된 모든 학생 정보 출력
+void printStudent(struct Student *p, int n) {
     printf("\n--- 학생 정보 ---\n");
-    for (int i = 0; i < n; i++) { //  학생 수 n만큼 반복
+    for (int i = 0; i < n; i++) //  학생 수 n만큼 반복
         printf("%d. %s %d %s %s\n", i+1, (*(p+i)).name, (*(p+i)).age, (*(p+i)).gender, (*(p+i)).hobby);
+}
+
+void startProgram(struct Student *p) {
+    int n = 3;  //  초기 학생 수 3명
+    information(p); //  미리 입력된 학생 정보
+    printStudent(p, n); //  미리 입력된 학생 3명 정보 출력
+    while (TRUE) {
+        if (inputStudent(p, &n) == FALSE) { //  end 입력받으면 종료
+        break;
+        }
+        printStudent(p, n); //  모든 학생 정보 출력
     }
 }
 
 int main() {
-    struct Student *p = (struct Student*)malloc(sizeof(struct Student) * MAX);  //  p에 학생 저장 공간 1000세트 동적 할당
-    int n = 3;  //  초기 학생 수 3명
-    information(p); //  미리 입력된 학생 정보
-    printStudent(p, n); //  미리 입력된 학생 3명 정보 출력
-
-    while (TRUE) {
-        if (inputStudent(p, &n) == FALSE) {
-            break;//  end 입력 받으면 종료
-        }
-        printStudent(p, n); //  모든 학생 정보 출력
-    }
-
+    struct Student *p = (struct Student*)malloc(sizeof(struct Student) * MAX); 
+    //  p에 학생 저장 공간 1000세트 동적 할당
+    startProgram(p);    //  프로그램 실행
     free(p);    //  동적 할당 해제
-    
     return 0;
 }
