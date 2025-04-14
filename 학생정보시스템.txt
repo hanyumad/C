@@ -83,7 +83,9 @@ void printStudent(struct Student *p, int n) {
 }
 
 void startProgram(struct Student *p) {
+
     int n = 3;  //  초기 학생 수 3명
+
     information(p); //  미리 입력된 학생 정보
     printStudent(p, n); //  미리 입력된 학생 3명 정보 출력
     while (TRUE) {
