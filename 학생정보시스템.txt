@@ -26,7 +26,9 @@ int inputStudent(struct Student *p, int *n) {   //  n은 현재 학생 수
     printf("\n이름 (end 입력 시 종료): ");
     scanf("%s", temp);
     
-    if (strcmp(temp, "end") == 0) return FALSE; //  strcmp 사용하여 end 입력하면 프로그램 종료
+    if (strcmp(temp, "end") == 0) { //  strcmp 사용하여 end 입력하면 프로그램 종료
+    return FALSE;
+    }
     
     strcpy((*(p+*n)).name, temp);   //  입력한 이름 strcpy 사용하여 복사
     printf("나이: ");
@@ -54,7 +56,9 @@ int main() {
     printStudent(p, n); //  미리 입력된 학생 3명 정보 출력
 
     while (TRUE) {
-        if (inputStudent(p, &n) == FALSE) break;    //  end 입력 받으면 종료
+        if (inputStudent(p, &n) == FALSE) {
+            break;//  end 입력 받으면 종료
+        }
         printStudent(p, n); //  모든 학생 정보 출력
     }
 
