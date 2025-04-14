@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// 공용체 정의
+union Data {
+    int intVal;
+    float floatVal;
+    char charVal;
+};
+
+int main() {
+
+    union Data data;
+    char input[100];
+
+    while (1) { //  exit를 입력할때까지 반복
+        printf("input value (input 'exit' to stop)\n");
+        scanf("%s", input);
+
+        if (strcmp(input, "exit") == 0) {
+        //  exit 입력되면 프로그램 종료
+            break;
+        }
+
+        // 값 판별
+        int intVal; //  정수 값
+        float floatVal; //  실수 값
+        char charVal;   //  문자
+        char extra; //  추가적인 문자
+
+        // 정수인지 확인
+        if (sscanf(input, "%d%c", &intVal, &extra) == 1) {  //  intVal의 값이 True라면
+            data.intVal = intVal;   //  정수 값 저장
+            printf("int: %d %p\n", data.intVal, (void*)&data.intVal);
+            //  정수 값과 메모리 주소 출력
+        }
+        // 실수인지 확인
+        else if (sscanf(input, "%f%c", &floatVal, &extra) == 1) {   //  floatVal의 값이 True라면
+            data.floatVal = floatVal;   //  실수 값 저장
+            printf("float: %f %p\n", data.floatVal, (void*)&data.floatVal);
+            //  실수 값과 메모리 주소 출력
+        }
+        // 문자인지 확인
+        else if (strlen(input) == 1) {  //  문자 길이가 1이라면
+            data.charVal = input[0];    //  문자 저장
+            printf("char: %c %p\n", data.charVal, (void*)&data.charVal);
+            //  문자와 메모리 주소 출력
+        }
+        else {
+            printf("Not value input.\n");
+        }
+    }
+
+    printf("program end\n");
+    return 0;
+}
