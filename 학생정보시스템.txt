@@ -28,13 +28,13 @@ int inputStudent(struct Student *p, int *n) {   //  n은 현재 학생의 수
         scanf("%s", temp);
         if (strcmp(temp, "end") == 0) {
         //strcmp 사용하여 end 입력하면 프로그램 종료
-        return FALSE;
+            return FALSE;
         }
         
         if (strlen(temp) == 0) {    //  공백이면 재입력
-        printf("문자를 입력하세요.\n");
+            printf("문자를 입력하세요.\n");
         } else 
-        break;
+            break;
     }
     strcpy((*(p+*n)).name, temp);
     //  입력한 이름 strcpy 사용하여 복사
@@ -47,7 +47,7 @@ int inputStudent(struct Student *p, int *n) {   //  n은 현재 학생의 수
             printf("0 이상의 나이를 입력하세요.\n");
             while (getchar() != '\n');
         } else 
-        break;
+            break;
     }
     (*(p+*n)).age = age;
 
@@ -57,7 +57,7 @@ int inputStudent(struct Student *p, int *n) {   //  n은 현재 학생의 수
         if (strcmp(temp, "M") != 0 && strcmp(temp, "F") != 0) {
             printf("M 또는 F로 입력하세요.\n");
         } else
-        break;
+            break;
     }
     strcpy((*(p+*n)).gender, temp);
     //  입력한 성별 strcpy 사용하여 복사
@@ -68,7 +68,7 @@ int inputStudent(struct Student *p, int *n) {   //  n은 현재 학생의 수
         if (strlen(temp) == 0) {    //  공백이면 재입력
         printf("취미를 입력하세요.\n");
         } else
-        break;
+            break;
     }
     strcpy((*(p+*n)).hobby, temp);
     //  입력한 취미 strcpy 사용하여 복사
@@ -92,7 +92,7 @@ void startProgram(struct Student *p) {
     printStudent(p, n); //  미리 입력된 학생 3명 정보 출력
     while (TRUE) {
         if (inputStudent(p, &n) == FALSE) { //  end 입력받으면 종료
-        break;
+            break;
         }
         printStudent(p, n); //  모든 학생 정보 출력
     }
