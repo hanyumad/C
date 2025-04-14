@@ -66,7 +66,7 @@ int inputStudent(struct Student *p, int *n) {   //  n은 현재 학생의 수
         printf("취미: ");
         scanf("%s", temp);
         if (strlen(temp) == 0) {    //  공백이면 재입력
-        printf("취미를 입력하세요.\n");
+            printf("취미를 입력하세요.\n");
         } else
             break;
     }
