@@ -27,9 +27,10 @@ int inputStudent(struct Student *p, int *n) {   //  n은 현재 학생의 수
         printf("\n이름 (end 입력 시 종료): ");
         scanf("%s", temp);
         if (strcmp(temp, "end") == 0) {
+        //strcmp 사용하여 end 입력하면 프로그램 종료
         return FALSE;
         }
-        //strcmp 사용하여 end 입력하면 프로그램 종료
+        
         if (strlen(temp) == 0) {    //  공백이면 재입력
         printf("문자를 입력하세요.\n");
         } else 
@@ -37,6 +38,7 @@ int inputStudent(struct Student *p, int *n) {   //  n은 현재 학생의 수
     }
     strcpy((*(p+*n)).name, temp);
     //  입력한 이름 strcpy 사용하여 복사
+    
     int age;
     
     while (1) { //  0 이상의 나이만 입력 가능
