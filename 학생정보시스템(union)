@@ -103,12 +103,13 @@ void printStudent(struct Student *p, int n) {
     for (int i = 0; i < n; i++) {
     //  학생 수 n만큼 반복
         printf("%d. %s %d %s ", i+1, (*(p + i)).name, (*(p + i)).age, (*(p + i)).gender);
-        if ((*(p + i)).HobbyEtc == 1)
+        if ((*(p + i)).HobbyEtc == 1) {
             printf("Hobby: %s\n", (*(p + i)).info.hobby); //  hobby 출력
-        else if ((*(p + i)).HobbyEtc == 0)
+        } else if ((*(p + i)).HobbyEtc == 0) {
             printf("Etc: %s\n", (*(p + i)).info.etc); //  etc 출력
-        else
+        } else {
             printf("(No Info)\n");  //  no info 출력
+        }
     }
 }
 
@@ -118,7 +119,9 @@ void startProgram(struct Student *p) {
     information(p); //  초기 정보 저장
     printStudent(p, n); //  초기 학생 출력
     while (TRUE) {  //  학생 정보 반복 입력
-        if (inputStudent(p, &n) == FALSE) break;    //  end 입력 받으면 종료
+        if (inputStudent(p, &n) == FALSE) { //  end 입력 받으면 종료
+            break;
+        }
         printStudent(p, n);
     }
 }
