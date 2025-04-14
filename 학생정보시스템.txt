@@ -45,7 +45,7 @@ int inputStudent(struct Student *p, int *n) {   //  n은 현재 학생의 수
         printf("나이: ");
         if (scanf("%d", &age) != 1 || age <= 0) {
             printf("0 이상의 나이를 입력하세요.\n");
-            while (getchar() != '\n');
+            while (getchar() != '\n');  //  버퍼 제거하여 정리
         } else 
             break;
     }
