@@ -1,18 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#define TRUE 1
+#define FALSE 0
+#define MAX 1000
 
-#define TRUE 1          // 참 값 상수 정의
-#define FALSE 0         // 거짓 값 상수 정의
-#define MAX 1000        // 최대 학생 수 정의
-
-// 공용체 정의 : hobby 또는 etc 중 하나만 저장 가능 (같은 메모리 공간 공유)
+//  공용체 정의
 union EtcInfo {
     char hobby[20];     // 취미
     char etc[20];       // 기타 정보
 };
 
-// 학생 정보를 담는 구조체 정의
+//  구조체 정의
 struct Student {
     char name[20];          // 이름
     int age;                // 나이
@@ -20,33 +19,30 @@ struct Student {
     union EtcInfo extra;    // 취미 or 기타 정보를 저장할 공용체
 };
 
-// 미리 입력된 학생 정보 초기화 함수
 void information(struct Student *p) {
     // 학생 정보 3명 정의 및 초기화
     struct Student a = {"hong", 30, "M", {"soccer"}};
     struct Student b = {"kim", 25, "M", {"music"}};
     struct Student c = {"park", 20, "F", {"movie"}};
-
-    // 동적할당된 배열에 값 복사
     *(p+0) = a;
     *(p+1) = b;
     *(p+2) = c;
 }
 
-// 학생 정보 입력 함수
+// 학생 정보 입력
 int inputStudent(struct Student *p, int *n) {
     char temp[20];  // 문자열 입력받을 임시 변수
 
     // 이름 입력 받기
     while (1) {
-        printf("\n이름 (end 입력 시 종료): ");
+        printf("\nName (input 'end' to stop): ");
         scanf("%s", temp);
         if (strcmp(temp, "end") == 0) {
             // "end" 입력 시 입력 종료
             return FALSE;
         }
         if (strlen(temp) == 0) {
-            printf("문자를 입력하세요.\n");
+            printf("input name.\n");
         } else
             break;
     }
@@ -55,10 +51,10 @@ int inputStudent(struct Student *p, int *n) {
     // 나이 입력 받기
     int age;
     while (1) {
-        printf("나이: ");
+        printf("Age: ");
         if (scanf("%d", &age) != 1 || age <= 0) {
             // 0 이하 또는 잘못된 입력 처리
-            printf("0 이상의 나이를 입력하세요.\n");
+            printf("input more than 0.\n");
             while (getchar() != '\n');  // 버퍼 비우기
         } else
             break;
@@ -67,10 +63,10 @@ int inputStudent(struct Student *p, int *n) {
 
     // 성별 입력 받기 (M/F만 가능)
     while (1) {
-        printf("성별 (M/F): ");
+        printf("Gender (M/F): ");
         scanf("%s", temp);
         if (strcmp(temp, "M") != 0 && strcmp(temp, "F") != 0) {
-            printf("M 또는 F로 입력하세요.\n");
+            printf("input M or F.\n");
         } else
             break;
     }
@@ -78,10 +74,10 @@ int inputStudent(struct Student *p, int *n) {
 
     // 취미 입력 받기
     while (1) {
-        printf("취미: ");
+        printf("Hobby: ");
         scanf("%s", temp);
         if (strlen(temp) == 0) {
-            printf("취미를 입력하세요.\n");
+            printf("input hobby.\n");
         } else
             break;
     }
@@ -91,9 +87,9 @@ int inputStudent(struct Student *p, int *n) {
     return TRUE;
 }
 
-// 학생 정보 출력 함수
+// 학생 정보 출력
 void printStudent(struct Student *p, int n) {
-    printf("\n--- 학생 정보 ---\n");
+    printf("\n--- Student Information ---\n");
     for (int i = 0; i < n; i++) {
         // 저장된 학생 정보 출력
         printf("%d. %s %d %s %s\n",
@@ -122,9 +118,8 @@ void startProgram(struct Student *p) {
     }
 }
 
-// 메인 함수
 int main() {
-    // 학생 정보 저장 공간 동적할당 (MAX 명 만큼)
+    // 학생 정보 저장 공간 동적할당 (MAX만큼)
     struct Student *p = (struct Student*)malloc(sizeof(struct Student) * MAX);
     startProgram(p);    // 프로그램 실행
     free(p);            // 동적할당 해제
