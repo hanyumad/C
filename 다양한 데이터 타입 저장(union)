@@ -46,8 +46,7 @@ int main() {
             data.charVal = input[0];    //  문자 저장
             printf("char: %c %p\n", data.charVal, (void*)&data.charVal);
             //  문자와 메모리 주소 출력
-        }
-        else {
+        } else {
             printf("Not value input.\n");
         }
     }
