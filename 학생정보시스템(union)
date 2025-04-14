@@ -25,9 +25,9 @@ void information(struct Student *p) {
     struct Student a = {"hong", 30, "M", .info.hobby = "soccer", 1};
     struct Student b = {"kim", 25, "M", .info.hobby = "music", 1};
     struct Student c = {"park", 20, "F", .info.hobby = "movie", 1};
-    *(p+0) = a;
-    *(p+1) = b;
-    *(p+2) = c; //  배열 포인터 0, 1, 2에 복사
+    *(p + 0) = a;
+    *(p + 1) = b;
+    *(p + 2) = c; //  배열 포인터 0, 1, 2에 복사
 }
 
 // 학생 정보 입력 함수
@@ -39,7 +39,7 @@ int inputStudent(struct Student *p, int *n) {
         scanf("%s", temp);
         
         if (strcmp(temp, "end") == 0) {
-        return FALSE;   //  end 입력시 종료
+            return FALSE;   //  end 입력시 종료
         }   
         if (strlen(temp) == 0) {
             printf("input name.\n");    //  빈 문자열 방지
@@ -47,7 +47,7 @@ int inputStudent(struct Student *p, int *n) {
             break;
         }
     }
-    strcpy((*(p+*n)).name, temp);   //  이름 저장
+    strcpy((*(p + *n)).name, temp);   //  이름 저장
 
     int age;
     //  나이 입력
@@ -60,7 +60,7 @@ int inputStudent(struct Student *p, int *n) {
             break;
         }
     }
-    (*(p+*n)).age = age;    //  나이 저장
+    (*(p + *n)).age = age;    //  나이 저장
     //  성별 입력
     while (1) {
         printf("Gender (M/F): ");
@@ -71,10 +71,11 @@ int inputStudent(struct Student *p, int *n) {
             break;
         }
     }
-    strcpy((*(p+*n)).gender, temp); //  성별 저장
+    strcpy((*(p + *n)).gender, temp); //  성별 저장
 
     while (1) {
         printf("Input Hobby (1), etc (0), or skip (-1): "); //  hobby, etcm skip 입력
+
         int choice;
         if (scanf("%d", &choice) != 1 || (choice != 1 && choice != 0 && choice != -1)) {
             printf("input 1, 0, or -1.\n");
@@ -84,10 +85,10 @@ int inputStudent(struct Student *p, int *n) {
         (*(p+*n)).HobbyEtc = choice;    //  선택 값 저장
         if (choice == 1) {
             printf("Hobby: ");
-            scanf("%s", (*(p+*n)).info.hobby);  //  hobby 저장
+            scanf("%s", (*(p + *n)).info.hobby);  //  hobby 저장
         } else if (choice == 0) {
             printf("Etc: ");
-            scanf("%s", (*(p+*n)).info.etc);    //  etc 저장
+            scanf("%s", (*(p + *n)).info.etc);    //  etc 저장
         }
         break;
     }
@@ -101,11 +102,11 @@ void printStudent(struct Student *p, int n) {
     printf("\n--- Student Information ---\n");
     for (int i = 0; i < n; i++) {
     //  학생 수 n만큼 반복
-        printf("%d. %s %d %s ", i+1, (*(p+i)).name, (*(p+i)).age, (*(p+i)).gender);
-        if ((*(p+i)).HobbyEtc == 1)
-            printf("Hobby: %s\n", (*(p+i)).info.hobby); //  hobby 출력
-        else if ((*(p+i)).HobbyEtc == 0)
-            printf("Etc: %s\n", (*(p+i)).info.etc); //  etc 출력
+        printf("%d. %s %d %s ", i+1, (*(p + i)).name, (*(p + i)).age, (*(p + i)).gender);
+        if ((*(p + i)).HobbyEtc == 1)
+            printf("Hobby: %s\n", (*(p + i)).info.hobby); //  hobby 출력
+        else if ((*(p + i)).HobbyEtc == 0)
+            printf("Etc: %s\n", (*(p + i)).info.etc); //  etc 출력
         else
             printf("(No Info)\n");  //  no info 출력
     }
