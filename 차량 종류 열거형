@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+void main() {
+    
+    enum car {SEDAN, SUV, TRUCK, VAN};
+    enum car c;
+    
+    const char *category[] = {"1". "2", "3", "4"};
+    const char *carName[] = {"SEDAN", "SUV", "TRUCK", "VAN"};
+    
+    int n;
+    
+    printf("Input category");
+    scanf("%d", &n);
+    printf("%d", n);
+}
