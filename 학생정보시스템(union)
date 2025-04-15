@@ -54,7 +54,7 @@ int inputStudent(struct Student *p, int *n) {
     while (1) {
         printf("Age: ");
         if (scanf("%d", &age) != 1 || age <= 0) {   //  숫자 0 이상 들어가게 함
-            printf("input more than 0.\n");
+            printf("invalid input.\n");
             while (getchar() != '\n');  //  입력 버퍼 비우기
         } else {
             break;
