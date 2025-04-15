@@ -50,7 +50,10 @@ void PrintCalendar(int year, int month) {
                 lastDay = 28;
             }
             break;
-        case Apr+1: case Jun+1: case Sep+1: case Nov+1:
+        case Apr+1: 
+        case Jun+1: 
+        case Sep+1: 
+        case Nov+1:
             lastDay = 30;
             break;
         default:
