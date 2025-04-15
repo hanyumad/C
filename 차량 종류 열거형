@@ -1,16 +1,30 @@
 #include <stdio.h>
 
-void main() {
+enum CarType { SEDAN = 1, SUV, TRUCK, VAN };
+
+int main() {
     
-    enum car {SEDAN, SUV, TRUCK, VAN};
-    enum car c;
-    
-    const char *category[] = {"1". "2", "3", "4"};
-    const char *carName[] = {"SEDAN", "SUV", "TRUCK", "VAN"};
-    
-    int n;
-    
-    printf("Input category");
-    scanf("%d", &n);
-    printf("%d", n);
+    int input;
+
+    printf("자동차 종류를 선택하세요: 1. SEDAN  2. SUV  3. TRUCK  4. VAN\n");
+    scanf("%d", &input);
+
+    switch (input) {
+        case SEDAN:
+            printf("선택한 자동차 종류는: SEDAN\n");
+            break;
+        case SUV:
+            printf("선택한 자동차 종류는: SUV\n");
+            break;
+        case TRUCK:
+            printf("선택한 자동차 종류는: TRUCK\n");
+            break;
+        case VAN:
+            printf("선택한 자동차 종류는: VAN\n");
+            break;
+        default:
+            printf("잘못된 입력입니다.\n");
+    }
+
+    return 0;
 }
