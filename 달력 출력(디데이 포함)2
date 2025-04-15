@@ -87,21 +87,21 @@ void DDay() {
     char answer;
     
     while (1) {
-        printf("\n디데이를 계산하시겠습니까? (Y/N): ");
+        printf("\nCheck D-Day? (Y/N): ");
         scanf("%c", &answer);
 
         if (answer == 'Y' || answer == 'y') {
             int y, m, d;
             
             while (1) {
-                printf("디데이 날짜 입력 (YYYY MM DD): ");
+                printf("Input D-Day (YYYY MM DD): ");
                 if (scanf("%d %d %d", &y, &m, &d) != 3) {
-                    printf("숫자만 입력하세요.\n");
+                    printf("Input value number\n");
                     while (getchar() != '\n');  // 버퍼 비우기
                     continue;
                 }
                 if (y < 1900 || y > 2100 || m < 1 || m > 12 || d < 1 || d > 31) {
-                    printf("올바른 날짜를 입력하세요.\n");
+                    printf("Input value date\n");
                     continue;
                 }
                 break;
@@ -120,19 +120,19 @@ void DDay() {
             double diff = difftime(t_target, t_today) / (60 * 60 * 24);
 
             if (diff > 0)
-                printf("D-%d 입니다!\n", (int)diff);
+                printf("D-%d\n", (int)diff);
             else if (diff == 0)
-                printf("D-Day!\n");
+                printf("D-Day\n");
             else
-                printf("D+%d 입니다!\n", (int)(-diff));
+                printf("D+%d\n", (int)(-diff));
 
             break;
 
         } else if (answer == 'N' || answer == 'n') {
-            printf("프로그램을 종료합니다.\n");
+            printf("Program stop\n");
             break;
         } else {
-            printf("Y 또는 N만 입력하세요.\n");
+            printf("Input only Y or N\n");
             while (getchar() != '\n');  // 버퍼 비우기
         }
     }
