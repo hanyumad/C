@@ -1,29 +1,29 @@
 #include <stdio.h>
 
-enum CarType { SEDAN = 1, SUV, TRUCK, VAN };
+enum Car {SEDAN = 1, SUV, TRUCK, VAN};
 
 int main() {
     
     int input;
 
-    printf("자동차 종류를 선택하세요: 1. SEDAN  2. SUV  3. TRUCK  4. VAN\n");
+    printf("Car Type: 1. SEDAN  2. SUV  3. TRUCK  4. VAN\n");
     scanf("%d", &input);
 
     switch (input) {
-        case SEDAN:
-            printf("선택한 자동차 종류는: SEDAN\n");
+        case 1:
+            printf("Car type is SEDAN\n");
             break;
-        case SUV:
-            printf("선택한 자동차 종류는: SUV\n");
+        case 2:
+            printf("Car type is SUV\n");
             break;
-        case TRUCK:
-            printf("선택한 자동차 종류는: TRUCK\n");
+        case 3:
+            printf("Car type is TRUCK\n");
             break;
-        case VAN:
-            printf("선택한 자동차 종류는: VAN\n");
+        case 4:
+            printf("Car type is VAN\n");
             break;
         default:
-            printf("잘못된 입력입니다.\n");
+            printf("Invalid input\n");
     }
 
     return 0;
