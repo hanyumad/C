@@ -146,7 +146,7 @@ int programstart(int *year, int *month) {
     if (*month == 1) {    // 1 반환 시 프로그램 종료
         return 0;
     }
-    return 1;    // 성공
+    return 1;
 }
 
 
