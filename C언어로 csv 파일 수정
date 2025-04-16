@@ -1,0 +1,105 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_COL 50
+#define MAX_LINE 4096
+
+// 줄 끝 개행 문자 제거 함수
+void trim_newline(char *str) {
+    char *pos;
+    if ((pos=strchr(str, '\n')) != NULL)
+        *pos = '\0';
+    if ((pos=strchr(str, '\r')) != NULL)
+        *pos = '\0';
+}
+
+int main() {
+    FILE *fp, *temp;
+    char buffer[MAX_LINE];
+    char *token;
+    char *headers[MAX_COL];
+    int colIndexToModify = -1;
+    int year;
+
+    fp = fopen("C:\\Users\\USER\\Desktop\\가해운전자 - 행열변환.csv", "r");
+    temp = fopen("temp.csv", "w");
+
+    if (fp == NULL || temp == NULL) {
+        printf("파일 열기 실패\n");
+        return 1;
+    }
+
+    // 첫 줄 (헤더) 읽기
+    fgets(buffer, sizeof(buffer), fp);
+    trim_newline(buffer);
+    fputs(buffer, temp);
+    fputs("\n", temp);  // 줄바꿈 추가
+
+    // 헤더를 쉼표로 나눠서 열 이름 저장
+    char headerLine[MAX_LINE];
+    strcpy(headerLine, buffer);
+    int idx = 0;
+    token = strtok(headerLine, ",");
+    while (token != NULL) {
+        headers[idx++] = token;
+        token = strtok(NULL, ",");
+    }
+
+    // 수정할 열 이름 찾기
+    for (int i = 0; i < idx; i++) {
+        if (strstr(headers[i], "21~30세 사고[건]") != NULL) {
+            colIndexToModify = i;
+            break;
+        }
+    }
+
+    if (colIndexToModify == -1) {
+        printf("수정할 열을 찾지 못했습니다.\n");
+        fclose(fp);
+        fclose(temp);
+        return 1;
+    }
+
+    // 데이터 줄 읽기
+    while (fgets(buffer, sizeof(buffer), fp)) {
+        trim_newline(buffer);
+
+        char line[MAX_LINE];
+        strcpy(line, buffer);
+
+        char *values[MAX_COL];
+        int colIdx = 0;
+
+        token = strtok(line, ",");
+        while (token != NULL) {
+            values[colIdx++] = token;
+            token = strtok(NULL, ",");
+        }
+
+        // 사고년도 확인
+        year = atoi(values[0]);
+
+        // 2017년이면 해당 열 값 수정
+        if (year == 2017) {
+            values[colIndexToModify] = "30000";
+        }
+
+        // 수정된 줄 다시 작성
+        for (int i = 0; i < colIdx; i++) {
+            fprintf(temp, "%s", values[i]);
+            if (i != colIdx - 1)
+                fprintf(temp, ",");
+        }
+        fprintf(temp, "\n");
+    }
+
+    fclose(fp);
+    fclose(temp);
+
+    remove("가해운전자 - 행열변환.csv");
+    rename("temp.csv", "가해운전자 - 행열변환.csv");
+
+    printf("수정 완료!\n");
+    return 0;
+}
