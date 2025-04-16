@@ -87,7 +87,7 @@ void DDay() {
     
     while (1) {
         printf("\nCheck D-Day? (Y/N): ");   
-        scanf("%c", &answer);
+        scanf(" %c", &answer);
 
         if (answer == 'Y' || answer == 'y') {    // y 선택한다면
             int y, m, d;
@@ -129,10 +129,10 @@ void DDay() {
 
         } else if (answer == 'N' || answer == 'n') {    // n 선택한다면 프로그램 종료
             printf("Program stop\n");
-            break;
+                break;
         } else {
             printf("Input only Y or N\n");    // y, n 이외 값 입력 시 반복
-            while (getchar() != '\n');  // 버퍼 비우기
+                while (getchar() != '\n');  // 버퍼 비우기
         }
     }
 }
