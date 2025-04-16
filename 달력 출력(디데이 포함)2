@@ -118,13 +118,13 @@ void DDay() {
 
             double diff = difftime(t_target, t_today) / (60 * 60 * 24);    // 시간 차이를 초 단위로 구해 일 단위로 변환
 
-            if (diff > 0)
+            if (diff > 0) {
                 printf("D-%d\n", (int)diff);
-            else if (diff == 0)
+            } else if (diff == 0) {
                 printf("D-Day\n");
-            else
+            } else {
                 printf("D+%d\n", (int)(-diff));    // 남은 날, 오늘, 지난 날 조건에 맞춰 출력
-
+            }
             break;
 
         } else if (answer == 'N' || answer == 'n') {    // n 선택한다면 프로그램 종료
