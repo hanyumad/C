@@ -1,0 +1,90 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
+import numpy as np
+
+# CSV 파일 읽기 - 한글 인코딩 처리
+df = pd.read_csv('가해운전자.csv', encoding='utf-8')
+
+# 그래프 생성을 위한 데이터 준비
+years = df['사고년도']
+under_60_accidents = df['60세 이하 전체 사고[건]']
+over_61_accidents = df['61세 이상 전체 사고[건]']
+under_60_ratio = df['60세 이하 전체 대비 사고']
+over_61_ratio = df['61세 이상 전체 대비 사고']
+under_60_license = df['60세 이하 면허 소지자']
+over_61_license = df['61세 이상 면허 소지자']
+under_60_license_death = df['60세 이하 면허 소지자 대비 사망']
+over_61_license_death = df['61세 이상 면허 소지자 대비 사망']
+
+# 마지막 행(전체 합계) 제외
+if years.iloc[-1] == '전체 합계':
+    years = years[:-1]
+    under_60_accidents = under_60_accidents[:-1]
+    over_61_accidents = over_61_accidents[:-1]
+    under_60_ratio = under_60_ratio[:-1]
+    over_61_ratio = over_61_ratio[:-1]
+
+# 그래프 크기 설정
+plt.figure(figsize=(14, 8))
+
+# 첫 번째 y축 설정 (막대그래프용)
+ax1 = plt.gca()
+ax1.set_xlabel('Year', fontsize=12)
+ax1.set_ylabel('Accident', fontsize=12)
+
+# 두 번째 y축 설정 (꺾은선 그래프용)
+ax2 = ax1.twinx()
+ax2.set_ylabel('accident_rate (%)', fontsize=12)
+
+# 막대 그래프 그리기
+bar_width = 0.35
+x = np.arange(len(years))
+bars1 = ax1.bar(x, under_60_accidents, bar_width, label='under_60_accidents', color='skyblue')
+bars2 = ax1.bar(x, over_61_accidents, bar_width, bottom=under_60_accidents, label='over_61_accidents', color='salmon')
+
+# 꺾은선 그래프 그리기
+line1 = ax2.plot(x, under_60_ratio, marker='o', linewidth=2, color='blue', label='under_60_ratio (%)')
+line2 = ax2.plot(x, over_61_ratio, marker='s', linewidth=2, color='red', label='over_61_ratio (%)')
+
+# x축 레이블 설정
+plt.xticks(x, years.astype(str))
+
+# 막대 그래프 위에 값 표시하기
+for i, bar in enumerate(bars1):
+    height = bar.get_height()
+    ax1.text(bar.get_x() + bar.get_width()/2., height/2,
+            f'{int(height):,}', ha='center', va='center', color='black', fontsize=9, fontweight='bold')
+
+for i, bar in enumerate(bars2):
+    height = bar.get_height()
+    total_height = bar.get_y() + height
+    ax1.text(bar.get_x() + bar.get_width()/2., bar.get_y() + height/2,
+            f'{int(height):,}', ha='center', va='center', color='black', fontsize=9, fontweight='bold')
+
+# 꺾은선 그래프 위에 값 표시하기
+for i, val in enumerate(under_60_ratio):
+    ax2.text(i, val+0.5, f'{val:.2f}%', ha='center', va='bottom', color='blue', fontsize=9, fontweight='bold')
+
+for i, val in enumerate(over_61_ratio):
+    ax2.text(i, val+0.5, f'{val:.2f}%', ha='center', va='bottom', color='red', fontsize=9, fontweight='bold')
+
+# 그래프 스타일 설정
+ax1.set_title('Accident (Age) (2014-2023)', fontsize=14)
+ax1.grid(True, alpha=0.3)
+ax1.yaxis.set_major_formatter(ticker.StrMethodFormatter('{x:,.0f}'))
+
+# 두 개의 범례 합치기
+lines1, labels1 = ax1.get_legend_handles_labels()
+lines2, labels2 = ax2.get_legend_handles_labels()
+ax1.legend(lines1 + lines2, labels1 + labels2, loc='upper center', bbox_to_anchor=(0.5, -0.1), ncol=2)
+
+# x축 레이블 회전
+plt.xticks(rotation=45)
+
+# 레이아웃 조정
+plt.tight_layout()
+
+# 그래프 저장 및 표시
+plt.savefig('연령대별_교통사고_추이_수치표시.png', dpi=300)
+plt.show()
