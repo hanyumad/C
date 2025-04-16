@@ -111,7 +111,7 @@ void DDay() {
             time(&t_today);
             today = *localtime(&t_today);    // 현재 시간 가져오기
 
-            target.tm_year = y - 1900;
+            target.tm_year = y - 1900;    // tm이 1900에서 시작이기 때문에 1900년도에서 지난 값을 구하기 위해선 1900 빼야함
             target.tm_mon = m - 1;
             target.tm_mday = d;
             t_target = mktime(&target);    // 목표 날짜 설정
