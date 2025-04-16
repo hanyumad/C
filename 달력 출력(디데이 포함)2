@@ -103,7 +103,7 @@ void DDay() {
                     printf("Input value date\n");    // 넘는다면 오류 문자 출력
                     continue;
                 }
-                break;
+                    break;
             }
 
             struct tm today = {0}, target = {0};
@@ -126,10 +126,9 @@ void DDay() {
                 printf("D+%d\n", (int)(-diff));    // 남은 날, 오늘, 지난 날 조건에 맞춰 출력
             }
             break;
-
         } else if (answer == 'N' || answer == 'n') {    // n 선택한다면 프로그램 종료
             printf("Program stop\n");
-                break;
+            break;
         } else {
             printf("Input only Y or N\n");    // y, n 이외 값 입력 시 반복
                 while (getchar() != '\n');  // 버퍼 비우기
@@ -150,7 +149,6 @@ int programstart(int *year, int *month) {
     }
     return 1;
 }
-
 
 int main() {
     int year, month;
